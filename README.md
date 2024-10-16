@@ -21,3 +21,5 @@ yarn dev
 # or
 pnpm dev
 ```
+
+You can now access the app from this url locally [http://localhost:3000](http://localhost:3000)
