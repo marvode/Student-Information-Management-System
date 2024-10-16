@@ -1,4 +1,8 @@
+// @ts-nocheck
+
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 const config: Config = {
   content: [
@@ -12,8 +16,24 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+      },
     },
   },
-  plugins: [],
+  darkMode: "class",
+  plugins: [
+    // add custom variant for expanding sidebar
+    plugin(({ addVariant, e }) => {
+      addVariant("sidebar-expanded", ({ modifySelectors, separator }) => {
+        modifySelectors(
+          ({ className }) =>
+            `.sidebar-expanded .${e(
+              `sidebar-expanded${separator}${className}`
+            )}`
+        );
+      });
+    }),
+  ],
 };
 export default config;
