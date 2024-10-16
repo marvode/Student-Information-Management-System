@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
 	Card,
 	CardHeader,
@@ -11,7 +10,6 @@ import {
 	StackDivider,
 	Text,
 	Button,
-	Link,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
@@ -26,8 +24,6 @@ interface Props {
 
 const StudentDetails = ({ student }: Props) => {
 	const router = useRouter();
-
-	const [studentDetails, setStudent] = useState<Student | undefined>(student);
 
 	const handleDelete = async () => {
 		const res = await fetch(`/api/students/${student.id}`, {
@@ -61,7 +57,7 @@ const StudentDetails = ({ student }: Props) => {
 								Name
 							</Heading>
 							<Text pt="2" fontSize="sm">
-								{studentDetails?.name}
+								{student.name}
 							</Text>
 						</Box>
 						<Box>
@@ -69,7 +65,7 @@ const StudentDetails = ({ student }: Props) => {
 								Registration Number
 							</Heading>
 							<Text pt="2" fontSize="sm">
-								{studentDetails?.registrationNumber}
+								{student.registrationNumber}
 							</Text>
 						</Box>
 						<Box>
@@ -77,7 +73,7 @@ const StudentDetails = ({ student }: Props) => {
 								Major
 							</Heading>
 							<Text pt="2" fontSize="sm">
-								{studentDetails?.major}
+								{student.major}
 							</Text>
 						</Box>
 						<Box>
@@ -85,7 +81,7 @@ const StudentDetails = ({ student }: Props) => {
 								GPA
 							</Heading>
 							<Text pt="2" fontSize="sm">
-								{studentDetails?.gpa}
+								{student.gpa}
 							</Text>
 						</Box>
 						<Box>
@@ -93,7 +89,7 @@ const StudentDetails = ({ student }: Props) => {
 								Date of Birth
 							</Heading>
 							<Text pt="2" fontSize="sm">
-								{studentDetails?.dob}
+								{student.dob}
 							</Text>
 						</Box>
 					</Stack>

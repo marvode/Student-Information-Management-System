@@ -13,19 +13,18 @@ interface Props {
 
 const EditStudent = ({ student }: Props) => {
 	const router = useRouter();
-	const [studentObj, setStudentObj] = useState(student);
 	const [studentFormErrors, setStudentFormErrors] =
 		useState<StudentFormErrors>();
 
 	const handleSubmit = async (studentData: Omit<Student, "id">) => {
-		const res = await fetch(`/api/students/${studentObj?.id}`, {
+		const res = await fetch(`/api/students/${student.id}`, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(studentData),
 		});
 
 		if (res.ok) {
-			router.push(`/students/${studentObj?.id}`);
+			router.push(`/students/${student?.id}`);
 		} else {
 			const errorData = await res.json();
 			if (errorData.errors) {
@@ -43,7 +42,7 @@ const EditStudent = ({ student }: Props) => {
 
 				<CardBody>
 					<StudentForm
-						student={studentObj}
+						student={student}
 						onSubmit={handleSubmit}
 						studentErrors={studentFormErrors}
 					/>

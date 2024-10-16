@@ -1,5 +1,4 @@
 import {
-	Button,
 	Modal,
 	ModalOverlay,
 	ModalContent,
@@ -7,7 +6,6 @@ import {
 	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
-	useDisclosure,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 

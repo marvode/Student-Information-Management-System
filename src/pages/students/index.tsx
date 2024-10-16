@@ -14,7 +14,6 @@ import {
 	InputGroup,
 	Input,
 	InputLeftElement,
-	Link,
 	Table,
 	Thead,
 	Tbody,
@@ -180,9 +179,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
 	return { props: { initialStudents } };
 };
 
-function debounce(func: Function, delay: number): any {
+function debounce<T extends (...args: any[]) => void>(
+	func: T,
+	delay: number
+): (...args: Parameters<T>) => void {
 	let timeoutId: NodeJS.Timeout;
-	return (...args: any[]) => {
+	return (...args: Parameters<T>) => {
 		if (timeoutId) clearTimeout(timeoutId);
 		timeoutId = setTimeout(() => {
 			func(...args);
